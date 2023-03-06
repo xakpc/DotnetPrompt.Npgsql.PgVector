@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <RepositoryRoot>$(MSBuildThisFileDirectory)/..</RepositoryRoot>
+    <BaseOutputPath>$(RepositoryRoot)/build/bin/$(MSBuildProjectName)/</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(RepositoryRoot)/build/obj/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
+	<Product>DotnetPrompt</Product>
+    <Authors>Pavel Osadchuk</Authors>
+	<Company>xakpc</Company>
+    <PackageOutputPath>$(RepositoryRoot)/build/artifact/</PackageOutputPath>
+	<Copyright>Copyright (c) $([System.DateTime]::Now.ToString(yyyy)), Pavel Osadchuk</Copyright>
+	<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+</Project>

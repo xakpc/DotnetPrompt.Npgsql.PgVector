@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetPrompt.Npgsql.PgVector", "src\DotnetPrompt.Npgsql.PgVector\DotnetPrompt.Npgsql.PgVector.csproj", "{16BF7D26-72C2-4B33-9BD3-62209CBDD80D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotnetPrompt.Npgsql.PgVector.Experiment", "test\DotnetPrompt.Npgsql.PgVector.Experiment\DotnetPrompt.Npgsql.PgVector.Experiment.csproj", "{972892AD-699E-40E0-8C39-7F65B8DF3FD1}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-db-test", "test\docker-compose-db-test.dcproj", "{D4EA9F70-9AC5-4F5D-A731-9E85046B58D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{66694501-C1D5-4D7F-AD30-95D0E7C63639}"
+	ProjectSection(SolutionItems) = preProject
+		test\Database\Dockerfile = test\Database\Dockerfile
+		test\Database\init.sql = test\Database\init.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{47E3F1EB-C6F1-48DD-AE87-E13F77D7568F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5B91D18A-6B97-4E28-B642-D83423F8CCF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16BF7D26-72C2-4B33-9BD3-62209CBDD80D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BF7D26-72C2-4B33-9BD3-62209CBDD80D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BF7D26-72C2-4B33-9BD3-62209CBDD80D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BF7D26-72C2-4B33-9BD3-62209CBDD80D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{972892AD-699E-40E0-8C39-7F65B8DF3FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{972892AD-699E-40E0-8C39-7F65B8DF3FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{972892AD-699E-40E0-8C39-7F65B8DF3FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{972892AD-699E-40E0-8C39-7F65B8DF3FD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4EA9F70-9AC5-4F5D-A731-9E85046B58D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4EA9F70-9AC5-4F5D-A731-9E85046B58D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4EA9F70-9AC5-4F5D-A731-9E85046B58D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4EA9F70-9AC5-4F5D-A731-9E85046B58D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{972892AD-699E-40E0-8C39-7F65B8DF3FD1} = {5B91D18A-6B97-4E28-B642-D83423F8CCF2}
+		{D4EA9F70-9AC5-4F5D-A731-9E85046B58D1} = {5B91D18A-6B97-4E28-B642-D83423F8CCF2}
+		{66694501-C1D5-4D7F-AD30-95D0E7C63639} = {5B91D18A-6B97-4E28-B642-D83423F8CCF2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC25A750-FB3E-4F41-9A0A-88F8CBC8803E}
+	EndGlobalSection
+EndGlobal

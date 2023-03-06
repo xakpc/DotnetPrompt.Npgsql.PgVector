@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DotnetPrompt.Npgsql.PgVector.Experiment": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
