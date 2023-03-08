@@ -12,10 +12,19 @@ public class Vector
     /// <summary>
     /// ctor
     /// </summary>
-    /// <param name="vector">float list</param>
-    public Vector(float[] vector)
+    /// <param name="vector">Parametric array of float</param>
+    public Vector(params float[] vector)
     {
         Values = vector;
+    }
+
+    /// <summary>
+    /// Ctor
+    /// </summary>
+    /// <param name="vector">IEnumerable of float</param>
+    public Vector(IEnumerable<float> vector)
+    {
+        Values = vector.ToArray();
     }
 
     /// <summary>

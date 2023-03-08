@@ -1,4 +1,5 @@
 ﻿using DotnetPrompt.Npgsql.PgVector.Internal;
+using Npgsql;
 using Npgsql.TypeMapping;
 
 namespace DotnetPrompt.Npgsql.PgVector;
@@ -17,4 +18,9 @@ public static class NpgsqlPgVectorExtensions
         mapper.AddTypeResolverFactory(new PgVectorTypeHandlerResolverFactory());
         return mapper;
     }
+
+    /// <summary>
+    /// Get Vector
+    /// </summary>
+    public static Vector GetVector(this NpgsqlDataReader reader, int ordinal) => reader.GetFieldValue<Vector>(ordinal);
 }

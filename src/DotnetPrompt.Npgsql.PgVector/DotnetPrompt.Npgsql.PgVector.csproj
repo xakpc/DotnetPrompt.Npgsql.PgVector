@@ -10,6 +10,8 @@
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<Version>1.0.0-alpha.1</Version>
 	<RepositoryUrl>https://github.com/xakpc/DotnetPrompt.Npgsql.PgVector</RepositoryUrl>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageProjectUrl>https://github.com/xakpc/DotnetPrompt.Npgsql.PgVector</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,6 +24,13 @@
 
   <ItemGroup>
     <PackageReference Include="Npgsql" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
