@@ -6,25 +6,13 @@ using Npgsql.PostgresTypes;
 
 namespace DotnetPrompt.Npgsql.PgVector.Internal;
 
-internal class PgVectorTypeHandler : NpgsqlSimpleTypeHandler<Vector>
+internal class PgVectorTypeHandler : NpgsqlTypeHandler<Vector>
 {
     public PgVectorTypeHandler(PostgresType postgresType) : base(postgresType)
     {
     }
 
-    public override int ValidateObjectAndGetLength(object value, ref NpgsqlLengthCache? lengthCache, NpgsqlParameter? parameter)
-    {
-        return ValidateAndGetLength((Vector)value, parameter);
-    }
-
-    public override Task WriteObjectWithLength(object? value, NpgsqlWriteBuffer buf, NpgsqlLengthCache? lengthCache,
-        NpgsqlParameter parameter, bool async, CancellationToken cancellationToken = new CancellationToken())
-    {
-        Write(value as Vector ?? throw new InvalidOperationException("value type is invalid"), buf, parameter);
-        return Task.CompletedTask;
-    }
-
-    public override Vector Read(NpgsqlReadBuffer buf, int len, FieldDescription? fieldDescription = null)
+    public override ValueTask<Vector> Read(NpgsqlReadBuffer buf, int len, bool async, FieldDescription? fieldDescription = null)
     {
         var dim = buf.ReadUInt16();
         var unused = buf.ReadUInt16();
@@ -35,22 +23,37 @@ internal class PgVectorTypeHandler : NpgsqlSimpleTypeHandler<Vector>
             values[i] = buf.ReadSingle();
         }
 
-        return new Vector(values);
+        return new ValueTask<Vector>(new Vector(values));
     }
 
-    public override int ValidateAndGetLength(Vector value, NpgsqlParameter? parameter)
+    public override int ValidateAndGetLength(Vector value, ref NpgsqlLengthCache? lengthCache, NpgsqlParameter? parameter)
     {
         return sizeof(ushort) + sizeof(ushort) + value.ByteLength;
     }
 
-    public override void Write(Vector value, NpgsqlWriteBuffer buf, NpgsqlParameter? parameter)
+    public override Task Write(Vector value, NpgsqlWriteBuffer buf, NpgsqlLengthCache? lengthCache, NpgsqlParameter? parameter, bool async,
+        CancellationToken cancellationToken = new CancellationToken())
     {
-        //buf.WriteString(value.ToString());
         buf.WriteUInt16((ushort)value.Values.Length);
         buf.WriteUInt16(0);
 
-        buf.WriteSingle(value.Values[0]);
-        buf.WriteSingle(value.Values[1]);
-        buf.WriteSingle(value.Values[2]);
+        foreach (var valueValue in value.Values)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            buf.WriteSingle(valueValue);
+        }
+
+        return Task.CompletedTask;
+    }
+
+    public override int ValidateObjectAndGetLength(object value, ref NpgsqlLengthCache? lengthCache, NpgsqlParameter? parameter)
+    {
+        return base.ValidateAndGetLength<Vector>(value as Vector, ref lengthCache, parameter);
+    }
+
+    public override Task WriteObjectWithLength(object? value, NpgsqlWriteBuffer buf, NpgsqlLengthCache? lengthCache,
+        NpgsqlParameter? parameter, bool async, CancellationToken cancellationToken = new CancellationToken())
+    {
+        return base.WriteWithLength(value as Vector, buf, lengthCache, parameter, async, cancellationToken);
     }
 }

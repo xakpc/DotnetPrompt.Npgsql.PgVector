@@ -23,7 +23,6 @@ public class Vector
     /// </summary>
     public int ByteLength => Values.Length * sizeof(float);
 
-
     public override string ToString()
     {
         return JsonSerializer.Serialize(Values);

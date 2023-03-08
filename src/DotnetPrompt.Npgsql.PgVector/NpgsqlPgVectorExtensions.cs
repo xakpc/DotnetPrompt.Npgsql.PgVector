@@ -9,7 +9,7 @@ namespace DotnetPrompt.Npgsql.PgVector;
 public static class NpgsqlPgVectorExtensions
 {
     /// <summary>
-    /// Sets up PgVector mappings for the PostGIS types.
+    /// Sets up PgVector mappings for the Vector types.
     /// </summary>
     /// <param name="mapper">The type mapper to set up (global or connection-specific)</param>
     public static INpgsqlTypeMapper UsePgVector(this INpgsqlTypeMapper mapper)

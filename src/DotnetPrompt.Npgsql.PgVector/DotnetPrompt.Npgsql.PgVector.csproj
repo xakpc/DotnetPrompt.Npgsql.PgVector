@@ -9,6 +9,7 @@
 	<LangVersion>latest</LangVersion>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<Version>1.0.0-alpha.1</Version>
+	<RepositoryUrl>https://github.com/xakpc/DotnetPrompt.Npgsql.PgVector</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

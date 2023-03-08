@@ -23,25 +23,21 @@ namespace DotnetPrompt.Npgsql.PgVector.Experiment
 
             await using var dataSource = dataSourceBuilder.Build();
 
-            await using (var cmd = dataSource.CreateCommand("CREATE TABLE IF NOT EXISTS items (embedding vector(3))"))
-            {
-                await cmd.ExecuteNonQueryAsync();
-            }
+            //await using (var cmd = dataSource.CreateCommand("CREATE TABLE IF NOT EXISTS items (embedding vector(3))"))
+            //{
+            //    await cmd.ExecuteNonQueryAsync();
+            //}
 
-            await using (var cmd = dataSource.CreateCommand("INSERT INTO items VALUES ('[1,2,3]')"))
-            {
-                cmd.ExecuteNonQuery();
-            }
+            //await using (var cmd = dataSource.CreateCommand("INSERT INTO items VALUES ('[1,2,3]')"))
+            //{
+            //    cmd.ExecuteNonQuery();
+            //}
 
-            await using (var cmd = dataSource.CreateCommand("INSERT INTO items VALUES (@vec)"))
-            {
-                var par = cmd.CreateParameter();
-                par.ParameterName = "vec";
-                par.Value = vector;
-                cmd.Parameters.Add(par);
-                //cmd.Parameters.AddWithValue(new Vector(new[] { 4f, 5f, 6f }));
-                cmd.ExecuteNonQuery();
-            }
+            //await using (var cmd = dataSource.CreateCommand("INSERT INTO items VALUES ($1)"))
+            //{
+            //    cmd.Parameters.AddWithValue(new Vector(new[] { 4f, 5f, 7f }));
+            //    cmd.ExecuteNonQuery();
+            //}
 
             await using (var cmd = dataSource.CreateCommand("SELECT * FROM items"))
             {
@@ -52,6 +48,23 @@ namespace DotnetPrompt.Npgsql.PgVector.Experiment
                         Console.WriteLine(reader.GetFieldValue<Vector>(0));
                     }
                 }
+            }
+
+            await using (var cmd = dataSource.CreateCommand("SELECT * FROM items ORDER BY embedding <-> '[1,2,3]' LIMIT 5"))
+            {
+                await using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        Console.WriteLine(reader.GetFieldValue<Vector>(0));
+                    }
+                }
+            }
+
+            await using (var cmd = dataSource.CreateCommand("SELECT AVG(embedding) FROM items"))
+            {
+                var value = await cmd.ExecuteScalarAsync();
+                Console.WriteLine(value);
             }
         }
     }
