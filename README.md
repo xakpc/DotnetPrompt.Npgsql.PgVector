@@ -7,7 +7,7 @@ with vectors like Embedding vectors for LLM and more.
 
 Read more about `pg_vector` extension, how to install and work with it [here](https://github.com/pgvector/pgvector).
 
-#Getting Started
+# Getting Started
 
 Installation
 
