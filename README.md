@@ -116,7 +116,7 @@ Note: Combine with ORDER BY and LIMIT to use an [index](https://github.com/pgvec
 
 Get the average of vectors
 
-```
+```csharp
 await using (var cmd = dataSource.CreateCommand("SELECT AVG(embedding) FROM items"))
 {
     var value = await cmd.ExecuteScalarAsync();
